@@ -16,6 +16,12 @@ import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messag
 import { AuthService } from './services/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './guards/auth.guard';
+import { ListComponent } from './components/list/list.component';
+import { CardComponent } from './components/card/card.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { QrgenComponent } from './components/qrgen/qrgen.component';
+import { QrscanComponent } from './components/qrscan/qrscan.component';
+import { ConvertComponent } from './components/convert/convert.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,12 @@ import { AuthGuard } from './guards/auth.guard';
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    ListComponent,
+    CardComponent,
+    QrgenComponent,
+    QrscanComponent,
+    ConvertComponent
   ],
   imports: [
     BrowserModule, 
@@ -33,6 +44,7 @@ import { AuthGuard } from './guards/auth.guard';
     FormsModule, 
     FlashMessagesModule, 
     HttpClientModule,
+    NgxQRCodeModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {

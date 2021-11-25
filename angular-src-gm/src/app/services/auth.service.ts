@@ -34,6 +34,11 @@ export class AuthService {
     return this.http.post<any>(registerUrl, user, httpOptions);
   }
 
+  registerCard(card: any): Observable<any> {
+    const registerCardUrl = this.prepEndpoint('users/card');
+    return this.http.post<any>(registerCardUrl, card, httpOptions);
+  }
+
   authenticateUser(login: Login): Observable<any> {
     // const loginUrl = 'http://localhost:3000/users/authenticate';
     const loginUrl = this.prepEndpoint('users/authenticate');
@@ -46,9 +51,9 @@ export class AuthService {
   }
 
   logout() {
-    // localStorage,clear();
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userNoPW');
+    localStorage.clear();
+    // localStorage.removeItem('authToken');
+    // localStorage.removeItem('userNoPW');
   }
 
   getProfile(): Observable<any> {
@@ -56,8 +61,8 @@ export class AuthService {
     // 토큰을 포함한 헤더 옵션 생성
     const httpOptions1 = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + authToken,
+        contentType: 'application/json',
+        authorization: 'Bearer ' + authToken,
       })
     };
     // const profileUrl = 'http://localhost:3000/users/profile';
@@ -65,8 +70,43 @@ export class AuthService {
     return this.http.get<any>(profileUrl, httpOptions1);
   }
 
+  // Show user list (just testing DB query)
+  getList(): Observable<any> {
+    let authToken: any = localStorage.getItem('authToken');
+    const httpOptions1 = {
+      headers: new HttpHeaders({
+        contentType: 'application/json',
+        authorization: 'Bearer ' + authToken,
+      }),
+    };
+    const listUrl = this.prepEndpoint('users/list');
+    return this.http.get<any>(listUrl, httpOptions1);
+  }
+
+  // 사용자의 명함을 읽어오는 함수
+  getCard(username: any): Observable<any> {
+    let authToken: any = localStorage.getItem('authToken');
+    const httpOptions1 = {
+      headers: new HttpHeaders({
+        contentType: 'application/json',
+        authorization: 'Bearer ' + authToken,
+      }),
+    };
+    const mycardUrl = this.prepEndpoint('users/myCard');
+    return this.http.post<any>(mycardUrl, username, httpOptions1);
+  }
+
+  // 환율정보 얻어오기
+  getRate(): Observable<any> {
+    const APIKey = '3b0a0194c4693b2988a49d5c207e4bbf';
+    return this.http.get<any>(
+      `http://api.exchangeratesapi.io/v1/latest?access_key=${APIKey}`
+    );
+  }
+  
   loggedIn(): boolean{
     let authToken: any = localStorage.getItem('authToken');
     return !this.jwtHelper.isTokenExpired(authToken);
   }
+
 }

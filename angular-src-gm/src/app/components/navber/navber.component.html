@@ -7,13 +7,44 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/">홈</a>
+          <a class="nav-link active" aria-current="page" routerLink="/">
+            <i class="bi bi-house"></i> 홈
+          </a>
         </li>
         <li *ngIf="checkLoggedIn()" class="nav-item">
-          <a class="nav-link" routerLink="/profile"> 프로필</a>
+          <a class="nav-link" routerLink="/profile">
+            <i class="bi bi-file-person"></i> 프로필
+          </a>
         </li>
         <li *ngIf="checkLoggedIn()" class="nav-item">
-          <a class="nav-link" routerLink="/dashboard"> 대시보드</a>
+          <a class="nav-link" routerLink="/dashboard">
+            <i class="bi bi-clipboard"></i> 대시보드
+          </a>
+        </li>
+        <li *ngIf="checkLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/list">
+            <i class="bi bi-journals"></i> 사용자리스트
+          </a>
+        </li>
+        <li *ngIf="checkLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/card">
+            <i class="bi bi-card-list"></i> 명함관리
+          </a>
+        </li>
+        <li *ngIf="checkLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/qrgen">
+            <i class="bi bi-qr-code"></i> QR명함생성
+          </a>
+        </li>
+        <li *ngIf="checkLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/qrscan">
+            <i class="bi bi-qr-code-scan"></i> QR명함스캔
+          </a>
+        </li>
+        <li *ngIf="checkLoggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/convert"> 
+            <i class="bi bi-currency-exchange"></i> 환율정보
+          </a>
         </li>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">

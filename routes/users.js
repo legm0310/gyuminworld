@@ -4,6 +4,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
+const Card = require('../models/card');
 const config =require('../config/database');
 
 
@@ -87,6 +88,68 @@ router.get('/product', passport.authenticate('jwt', { session: false }), (req, r
     });
   });
 
+// 4. 사용자 리스트
+router.get("/list", passport.authenticate("jwt", { session: false }), (req, res, next) => 
+  {
+    User.getAll((err, users) => {
+      if (err) throw err;
+      res.json(users);
+    });
+  });
 
+// 5. 명함등록/수정
+router.post("/card", (req, res, next) => {
+  let username = req.body.username;
+  let update = {
+    name: req.body.name,
+    org: req.body.org,
+    title: req.body.title,
+    tel: req.body.tel,
+    fax: req.body.fax,
+    mobile: req.body.mobile,
+    email: req.body.email,
+    homepage: req.body.homepage,
+    address: req.body.address,
+    zip: req.body.zip,
+  };
+  
+  Card.getCardByUsername(username, (err, card) => {
+    if (err) throw err;
+    if (card) {
+      Card.updateCard(username, update, (err, card) => {
+        return res.json({
+          success: true,
+          msg: "명함정보 업데이트 성공",
+        });
+      });
+    } else {
+      update.username = req.body.username;
+      let newCard = new Card(update);
+      Card.addCard(newCard, (err, card) => {
+        if (err) throw err;
+        if (card) {
+          res.json({ success: true, msg: "명함 등록 성공" });
+        } else {
+          res.json({ success: false, msg: "명함 등록 실패" });
+        }
+      });
+    }
+  });
+});
 
+// 6. 내 명함정보 전송
+router.post("/myCard", (req, res, next) => {
+  Card.getCardByUsername(req.body.username, (err, card) => {
+    if (err) throw err;
+    if (card) {
+      return res.json({
+        success: true,
+        card: JSON.stringify(card),
+      });
+    } else {
+      res.json({ success: false, msg: "명함정보가 없습니다" });
+    }
+  });
+});
+    
 module.exports = router;

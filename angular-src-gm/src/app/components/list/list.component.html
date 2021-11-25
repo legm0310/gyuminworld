@@ -1,0 +1,22 @@
+<h2 class="page-header">서비스 사용자 리스트</h2>
+<div class="alert" role="alert">
+  <p>이 서비스에 등록된 사용자 리스트를 테이블로 보여줍니다.</p>
+</div>
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">   <!-- users가 배열일때 하나씩 쓴다는 의미 -->
+      <td>{{ user.name }}</td>   <!-- {{ ts파일에서 만들어지는 정보들을 가져다가 쓰는 방식 }} -->
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+    </tr>
+  </tbody>
+</table>
+  

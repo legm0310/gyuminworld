@@ -22,6 +22,7 @@ const UserSchema = mongoose.Schema({
   }
 });
 
+
 const User = mongoose.model('User', UserSchema);
 
 User.getUserById = function(id, callback) {
@@ -43,6 +44,7 @@ User.addUser = function(newUser, callback) {
   })
 }
 
+//패스워드를 비교하는 함수
 User.comparePassword = function(candidatePassword, hash, callback){
   bcrypt.compare(candidatePassword, hash, (err, isMatch)=>{
     if(err) throw err;
@@ -50,5 +52,10 @@ User.comparePassword = function(candidatePassword, hash, callback){
   });
 }
 
+// Return all user list
+User.getAll = function (callback) {
+  User.find(callback);
+};
+  
 
 module.exports = User;
