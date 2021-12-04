@@ -70,11 +70,11 @@ router.post('/authenticate', (req, res, next) => {
 router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) =>
   {
     res.json({
-      user: {
+      userNoPW: {
         name: req.user.name,
         username: req.user.username,
         email: req.user.email
-      }
+      },
     });
   });
 

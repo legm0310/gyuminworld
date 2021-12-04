@@ -12,12 +12,14 @@ import { QrgenComponent } from './components/qrgen/qrgen.component';
 import { QrscanComponent } from './components/qrscan/qrscan.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
+import { FooterComponent } from './components/footer/footer.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'navber', component: NavberComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'footer', component: FooterComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'list', component: ListComponent, canActivate: [AuthGuard] },

@@ -18,7 +18,11 @@ export class NavberComponent implements OnInit {
 
   //ngOnInit : 시작할때 무조건 실행하는 함수
   ngOnInit(): void {
+
   }
+
+
+
 
   onLogoutClick() {
     this.authService.logout();

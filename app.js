@@ -5,6 +5,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const users = require('./routes/users');
 const config = require('./config/database');
+// const session = require("express-session");
 const { url } = require('inspector');
 
 // Connect to Database
@@ -41,6 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 // Static Folder 기능을 제공하는 미들웨어
 app.use(express.static(path.join(__dirname, 'public')));
 // Passport
+// app.use(session({secret: "secret"}));/
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);

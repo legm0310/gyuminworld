@@ -1,27 +1,40 @@
-<h2 class="page-header">로그인 | Login</h2>
-<br/>
-<form (ngSubmit)="onLoginSubmit()">
-  <div class="form-group">
-    <label for="exampleInputEmail3">아이디 : Username</label>
-    <input 
-      type="text" 
-      [(ngModel)]="username" 
-      [ngModelOptions]="{ standalone: true }" 
-      class="form-control" 
-      id="exampleInputEmail3"
-    />
-  </div>
-  <br/>
-  <div class="form-group">
-    <label for="exampleInputEmail4">패스워드 : Password</label>
-    <input
-      type="password"
-      [(ngModel)]="password" [ngModelOptions]="{ standalone: true }"
-      class="form-control"
-      id="exampleInputEmail4"
-    />
-  </div>
 
-  <br/>
-  <input type="submit" class="btn btn-primary" value="로그인"/>
-</form>
+<section class="container contentmargintop">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+      <h1 class="page-header text-center loginlogo">로그인</h1>
+      <br/>
+      <form (ngSubmit)="onLoginSubmit()">
+        <div class="form-group">
+          <label for="exampleInputEmail3">USERNAME</label>
+          <input 
+            type="text" 
+            [(ngModel)]="username" 
+            [ngModelOptions]="{ standalone: true }" 
+            class="form-control idbox" 
+            id="exampleInputEmail3"
+          />
+        </div>
+        <br/>
+        <div class="form-group">
+          <label for="exampleInputEmail4">PASSWORD</label>
+          <input
+            type="password"
+            [(ngModel)]="password" [ngModelOptions]="{ standalone: true }"
+            class="form-control idbox"
+            id="exampleInputEmail4"
+          />
+        </div>
+
+        <div class="logbtnbox">
+          <input type="submit" class="btn" value="로그인"/>
+        </div>
+      </form>
+      <div class="caption">
+        <a href="" routerLink ="/register">회원가입하기</a>
+      </div>
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+</section>
